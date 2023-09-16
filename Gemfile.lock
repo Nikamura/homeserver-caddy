@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    pg (1.4.5)
+
+PLATFORMS
+  arm64-darwin-21
+
+DEPENDENCIES
+  pg (~> 1.4)
+
+BUNDLED WITH
+   2.3.11

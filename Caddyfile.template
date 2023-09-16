@@ -1,0 +1,67 @@
+{
+	order authenticate before respond
+	order authorize before reverse_proxy
+
+	security {
+		oauth identity provider google {
+			realm google
+			driver google
+			client_id {$CADDY_GOOGLE_CLIENT_ID}
+			client_secret {$CADDY_GOOGLE_CLIENT_SECRET}
+			scopes openid email profile
+		}
+
+		authentication portal myportal {
+			crypto key sign-verify {$CADDY_JWT_SHARED_SECRET}
+			crypto default token lifetime 86400
+
+			cookie domain *.{$CADDY_DOMAINNAME0}
+			cookie lifetime 172800
+
+			enable identity provider google
+
+			### USERS BLOCK START ###
+
+			### USERS BLOCK END ###
+		}
+
+		authorization policy admin_policy {
+			crypto key verify {$CADDY_JWT_SHARED_SECRET}
+			set auth url {$CADDY_AUTH_URL}
+			allow roles authp/admin
+		}
+
+		authorization policy advanced_policy {
+			crypto key verify {$CADDY_JWT_SHARED_SECRET}
+			set auth url {$CADDY_AUTH_URL}
+			allow roles authp/advanced
+		}
+
+		authorization policy user_policy {
+			crypto key verify {$CADDY_JWT_SHARED_SECRET}
+			set auth url {$CADDY_AUTH_URL}
+			allow roles authp/user
+		}
+
+		authorization policy user_policy_inject_headers {
+			crypto key verify {$CADDY_JWT_SHARED_SECRET}
+			set auth url {$CADDY_AUTH_URL}
+			allow roles authp/user
+
+			inject headers with claims
+		}
+	}
+}
+
+auth.{$CADDY_DOMAINNAME0} {
+	authenticate with myportal
+	header Access-Control-Allow-Origin *
+}
+
+dsm.{$CADDY_DOMAINNAME0} {
+	reverse_proxy {$CADDY_DSM_ADDRESS}
+}
+
+{$CADDY_DOMAINNAME0}, *.{$CADDY_DOMAINNAME0} {
+	redir https://auth.{$CADDY_DOMAINNAME0}
+}
