@@ -30,6 +30,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: "apps/caddyfile-generator/"
+          file: "caddy-file-generator.Dockerfile"
           tags: ${{ secrets.DOCKER_REGISTRY_URL }}/caddyfile-generator:latest
           platforms: linux/amd64
