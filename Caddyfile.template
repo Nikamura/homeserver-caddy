@@ -15,7 +15,6 @@
 			crypto key sign-verify {$CADDY_JWT_SHARED_SECRET}
 			crypto default token lifetime 86400
 
-			cookie domain *.{$CADDY_DOMAINNAME0}
 			cookie lifetime 172800
 
 			enable identity provider google
