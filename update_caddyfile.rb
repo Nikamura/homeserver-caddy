@@ -17,9 +17,9 @@ def update_caddyfile
   caddyfile = File.read(caddy_file_path)
 
   roles_map = {
-    "basic" => ["authp/user", "dev/user"].join(" "),
-    "advanced" => ["authp/user", "authp/advanced", "dev/user", "dev/advanced"].sort.join(" "),
-    "admin" => ["authp/user", "authp/advanced", "authp/admin", "dev/user", "dev/advanced", "dev/admin"].sort.join(" "),
+    "basic" => ["authp/user"].join(" "),
+    "advanced" => ["authp/user", "authp/advanced"].sort.join(" "),
+    "admin" => ["authp/user", "authp/advanced", "authp/admin"].sort.join(" "),
   }
 
   def get_user(user, roles)
