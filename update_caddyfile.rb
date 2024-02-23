@@ -17,9 +17,9 @@ def update_caddyfile
   caddyfile = File.read(caddy_file_path)
 
   roles_map = {
-    "basic" => ["authp/user"].join(" "),
-    "advanced" => ["authp/user", "authp/advanced"].sort.join(" "),
-    "admin" => ["authp/user", "authp/advanced", "authp/admin"].sort.join(" "),
+    "basic" => ["authp/user", "dev/user"].join(" "),
+    "advanced" => ["authp/user", "authp/advanced", "dev/user", "dev/advanced"].sort.join(" "),
+    "admin" => ["authp/user", "authp/advanced", "authp/admin", "dev/user", "dev/advanced", "dev/admin"].sort.join(" "),
   }
 
   def get_user(user, roles)
@@ -27,8 +27,8 @@ def update_caddyfile
       "transform user {",
       "\tmatch email #{user[0]}",
       "\taction add role #{roles[user[1]]}",
-      "\tui link \"Plex\" \"https://plex.#{ENV.fetch("CADDY_DOMAINNAME0")}/\" icon \"las la-film\"",
-      "\tui link \"Overseerr\" \"https://overseerr.#{ENV.fetch("CADDY_DOMAINNAME0")}/\" icon \"las la-search\"",
+      "\tui link \"Plex\" \"https://plex.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/\" icon \"las la-film\"",
+      "\tui link \"Overseerr\" \"https://overseerr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/\" icon \"las la-search\"",
       # "\tui link \"My Identity\" \"/whoami\" icon \"las la-user\"",
       "}",
     ]
