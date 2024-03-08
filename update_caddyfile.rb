@@ -32,7 +32,7 @@ def update_caddyfile
       link("Overseerr", "https://overseerr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-search"),
     ]
     role = user[1]
-    if role == "advanced"
+    if role == "advanced" || role == "admin"
       links << link("Radarr", "https://radarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
       links << link("Radarr 4k", "https://radarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
       links << link("Sonarr", "https://sonarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
