@@ -22,13 +22,28 @@ def update_caddyfile
     "admin" => ["authp/user", "authp/advanced", "authp/admin"].sort.join(" "),
   }
 
+  def link(name, url, icon)
+    "\tui link \"#{name}\" \"#{url}\" icon \"#{icon}\""
+  end
+
   def get_user(user, roles)
+    links = [
+      link("Plex", "https://plex.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film"),
+      link("Overseerr", "https://overseerr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-search"),
+    ]
+    role = user[1]
+    if role == "advanced"
+      links << link("Radarr", "https://radarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
+      links << link("Radarr 4k", "https://radarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
+      links << link("Sonarr", "https://sonarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
+      links << link("Sonarr 4k", "https://sonarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
+      links << link("Sonarr Anime", "https://sonarr-anime.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
+    end
     [
       "transform user {",
       "\tmatch email #{user[0]}",
-      "\taction add role #{roles[user[1]]}",
-      "\tui link \"Plex\" \"https://plex.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/\" icon \"las la-film\"",
-      "\tui link \"Overseerr\" \"https://overseerr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/\" icon \"las la-search\"",
+      "\taction add role #{roles[role]}",
+      *links
       # "\tui link \"My Identity\" \"/whoami\" icon \"las la-user\"",
       "}",
     ]
