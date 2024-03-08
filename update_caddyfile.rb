@@ -34,14 +34,14 @@ def update_caddyfile
     role = user[1]
     if role == "advanced" || role == "admin"
       links << link("Radarr", "https://radarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
-      links << link("Radarr 4k", "https://radarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-video")
+      links << link("Radarr 4k", "https://radarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
       links << link("Sonarr", "https://sonarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-tv")
-      links << link("Sonarr 4k", "https://sonarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-satellite-dish")
+      links << link("Sonarr 4k", "https://sonarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-tv")
       links << link("Sonarr Anime", "https://sonarr-anime.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-user-astronaut")
 
-      links << link("Bazarr", "https://bazarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-la-closed-captioning")
-      links << link("Bazarr 4k", "https://bazarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-la-closed-captioning")
-      links << link("Bazarr Anime", "https://bazarr-anime.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-la-closed-captioning")
+      links << link("Bazarr", "https://bazarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-closed-captioning")
+      links << link("Bazarr 4k", "https://bazarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-closed-captioning")
+      links << link("Bazarr Anime", "https://bazarr-anime.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-closed-captioning")
       links << link("Deluge", "https://deluge.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-download")
       links << link("Chat GPT", "https://lobe.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-comments")
       links << link("Prowlarr", "https://prowlarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-search-plus")
