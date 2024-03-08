@@ -35,9 +35,23 @@ def update_caddyfile
     if role == "advanced" || role == "admin"
       links << link("Radarr", "https://radarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
       links << link("Radarr 4k", "https://radarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
-      links << link("Sonarr", "https://sonarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
-      links << link("Sonarr 4k", "https://sonarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
-      links << link("Sonarr Anime", "https://sonarr-anime.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-film")
+      links << link("Sonarr", "https://sonarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-tv")
+      links << link("Sonarr 4k", "https://sonarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-tv")
+      links << link("Sonarr Anime", "https://sonarr-anime.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-tv")
+
+      links << link("Bazarr", "https://bazarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-la-closed-captioning")
+      links << link("Bazarr 4k", "https://bazarr-4k.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-la-closed-captioning")
+      links << link("Bazarr Anime", "https://bazarr-anime.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-la-closed-captioning")
+      links << link("Deluge", "https://deluge.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-download")
+      links << link("Chat GPT", "https://lobe.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-comments")
+      links << link("Prowlarr", "https://prowlarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-search-plus")
+
+    end
+
+    if role == "admin"
+      links << link("Tautulli", "https://prowlarr.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-chart-line")
+      links << link("VSCode", "https://code.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-code")
+      links << link("Minio", "https://minio.#{ENV.fetch("CADDY_DOMAINNAME_DEV")}/", "las la-cloud")
     end
     [
       "transform user {",
