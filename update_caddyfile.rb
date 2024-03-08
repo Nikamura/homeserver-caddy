@@ -43,7 +43,7 @@ def update_caddyfile
       "transform user {",
       "\tmatch email #{user[0]}",
       "\taction add role #{roles[role]}",
-      *links
+      *links,
       # "\tui link \"My Identity\" \"/whoami\" icon \"las la-user\"",
       "}",
     ]
