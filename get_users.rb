@@ -10,5 +10,5 @@ def get_users
     result.map { |res| res.values_at("user_email", "user_role") }.to_h
   end
 ensure
-  conn.close
+  conn.close rescue nil
 end
